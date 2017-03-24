@@ -1,0 +1,621 @@
+@import "settings/variables.scss";
+@import "settings/mixins.scss";
+
+// GLOBAL SETTINGS
+
+* {
+  // A must-have in order to avoid useless calculations
+  box-sizing: border-box;
+}
+
+html {
+  // This will make calculations more simple with rem
+  // 1rem = 10px
+  font-size: 62.5%;
+  // IE fix
+  font-size: calc(1em * .625);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  // Set default font-size to the equivalent of 16px
+  font-size: 1.6rem;
+  font-family: Arial, sans-serif;
+  color: $txt-dark;
+  background-color: lighten($bg-light, 6%);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+h1, h2 {
+  // Unitless line-height
+  // as per http://meyerweb.com/eric/thoughts/2006/02/08/unitless-line-heights/
+  line-height: 1.2;
+}
+
+p, ul, li {
+  line-height: 1.4;
+}
+
+// Fix to get correct height on FF buttons
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+.ais-Highlight__highlighted {
+  font-style: normal;
+  background-color: lighten($bg-gold, 12%);
+}
+
+// TEMPLATE SETTINGS
+
+.wrapper {
+  @include bp($bp-small) {
+    display: flex;
+  }
+}
+
+
+// HEADER
+
+.Header {
+  padding: 1rem;
+  position: relative;
+  background-color: $bg-dark;
+}
+
+.Header-algoliaLink {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.Header-algoliaLogo {
+  display: block;
+  width: 28px;
+  height: 28px;
+}
+
+.Header-logo {
+  margin-left: 1rem;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 3rem;
+  text-decoration: none;
+  color: #fff;
+}
+
+// SEARCHBOX
+
+.CustomSearchBox {
+  // Vertically center the CustomSearchBox in the Header
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: right;
+}
+
+.CustomSearchBox-input, .CustomSearchBox-btn {
+  display: inline-block;
+  vertical-align: middle;
+  height: 3rem;
+  line-height: 3rem;
+  border: none;
+  appearance: none;
+}
+
+.CustomSearchBox-input {
+  padding: 0 1rem;
+  width: 14rem;
+  font-size: 1.4rem;
+  background-color: #fff;
+  border-radius: 4px 0 0 4px;
+
+  @include bp($bp-small) {
+    width: 18rem;
+  }
+
+  @include bp($bp-medium) {
+    width: 22rem;
+  }
+
+  @include bp($bp-large) {
+    width: 26rem;
+  }
+}
+
+.CustomSearchBox-btn {
+  padding: 0;
+  width: 4rem;
+  background-color: $bg-gold;
+  border-radius: 0 4px 4px 0;
+}
+
+.CustomSearchBox-btnIcon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  fill: $bg-dark;
+}
+
+// FACETS
+
+.Facets {
+  display: none;
+
+  @include bp($bp-small) {
+    padding: 2rem;
+    display: block;
+    flex: 0 0 25rem;
+    border-right: 1px solid $bg-light;
+    background-color: #fff;
+  }
+
+  @include bp($bp-medium) {
+    flex: 0 0 32rem;
+  }
+
+  // Customize ais components directly from their parent element to find them easily
+  .ais-ClearAll__root {
+    padding: .7rem 1rem;
+    font-size: 1.3rem;
+    color: $txt-dark;
+    background-color: #fff;
+    border: 1px solid $bg-light;
+    appearance: none;
+
+    &[disabled] {
+      opacity: .5;
+    }
+  }
+
+  .ais-HierarchicalMenu__item {
+    display: block;
+
+    + .ais-HierarchicalMenu__item {
+      margin-top: .5rem;
+    }
+
+    &::before {
+      content: '›';
+      margin-right: 1rem;
+      float: left;
+      position: relative;
+      top: -.2rem;
+      color: $txt-light;
+    }
+  }
+
+  .ais-HierarchicalMenu__itemLink {
+    display: table;
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: $txt-light;
+  }
+
+  .ais-HierarchicalMenu__itemSelectedParent, .ais-HierarchicalMenu__itemSelected {
+    font-weight: bold;
+  }
+
+  .ais-HierarchicalMenu__itemItems {
+    margin-top: .5rem;
+    font-weight: normal;
+  }
+
+  .ais-HierarchicalMenu__itemCount {
+    margin-left: .5rem;
+    font-weight: normal;
+    color: lighten($txt-light, 25%);
+
+    &::before, &::after {
+      color: $txt-light;
+    }
+
+    &::before {
+      content: '(';
+    }
+
+    &::after {
+      content: ')';
+    }
+  }
+
+  .ais-HierarchicalMenu__itemItems {
+    margin-left: 2rem;
+  }
+
+  .ais-SearchBox__input {
+    margin-bottom: 2rem;
+    padding: .7rem 1rem .7rem 2.5rem;
+    width: 20rem;
+    font-size: 1.3rem;
+    color: $txt-dark;
+    border: 1px solid $bg-light;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=UTF-8, %3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M23.809%2021.646l-6.205-6.205c1.167-1.605%201.857-3.579%201.857-5.711%200-5.365-4.365-9.73-9.731-9.73-5.365%200-9.73%204.365-9.73%209.73%200%205.366%204.365%209.73%209.73%209.73%202.034%200%203.923-.627%205.487-1.698l6.238%206.238%202.354-2.354zm-20.955-11.916c0-3.792%203.085-6.877%206.877-6.877s6.877%203.085%206.877%206.877-3.085%206.877-6.877%206.877c-3.793%200-6.877-3.085-6.877-6.877z%22%20fill%3D%22%23DBE2EB%22/%3E%3C/svg%3E');
+    background-size: 15px 15px;
+    background-position: .5rem 50%;
+    background-repeat: no-repeat;
+  }
+
+  .ais-SearchBox__submit, .ais-SearchBox__reset {
+    display: none;
+  }
+
+  .ais-Panel__title {
+    margin: 2rem 0;
+    font-size: 1.4rem;
+  }
+
+  .ais-StarRating__ratingIcon:before {
+    content: '\2605';
+    color: $bg-gold;
+  }
+
+  .ais-RefinementList__itemCount {
+    font-weight: normal;
+    color: lighten($txt-light, 25%);
+
+    &::before, &::after {
+      color: $txt-light;
+    }
+
+    &::before {
+      content: '(';
+    }
+
+    &::after {
+      content: ')';
+    }
+  }
+
+  .ais-RefinementList__item {
+    padding-left: 2.5rem;
+    position: relative;
+    font-size: 1.4rem;
+    color: $txt-light;
+
+    + .ais-RefinementList__item {
+      margin-top: .5rem;
+    }
+  }
+
+  .ais-RefinementList__itemCheckbox {
+    position: absolute;
+    left: 0;
+  }
+
+  .ais-RefinementList__itemSelected {
+    font-weight: bold;
+  }
+
+  .ais-StarRating__ratingLink {
+    display: block;
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: $txt-light;
+
+    + .ais-StarRating__ratingLink {
+      margin-top: .2rem;
+    }
+  }
+
+  .ais-StarRating__ratingLinkSelected {
+    font-weight: bold;
+  }
+
+  .ais-StarRating__ratingCount {
+    font-weight: normal;
+    color: lighten($txt-light, 25%);
+
+    &::before, &::after {
+      color: $txt-light;
+    }
+
+    &::before {
+      content: '(';
+    }
+
+    &::after {
+      content: ')';
+    }
+  }
+
+  .ais-RangeInput__fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  .ais-RangeInput__inputMin, .ais-RangeInput__inputMax {
+    padding: .7rem;
+    width: 7rem;
+    font-size: 1.3rem;
+    color: $txt-dark;
+    border: 1px solid $bg-light;
+    appearance: none;
+  }
+
+  .ais-RangeInput__separator {
+    margin: 0 1rem;
+  }
+
+  .ais-RangeInput__submit {
+    margin-left: 1rem;
+    padding: .8rem 1rem;
+    font-size: 1.3rem;
+    color: #fff;
+    background-color: $bg-dark;
+    border: none;
+    appearance: none;
+  }
+}
+
+.Facets-wrapper {
+  padding: 3rem 0;
+
+  + .Facets-wrapper {
+    border-top: 1px solid $bg-light;
+  }
+}
+
+.Facets-categoryTitle {
+  margin: 0 0 2rem;
+  font-size: 2rem;
+}
+
+.Facets-color {
+  margin: .5rem;
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  position: relative;
+  left: -.5rem;
+  border-radius: 3px;
+
+  // Just a sample of some colors
+  &[data-facet-value='White'] {
+    background-color: #fff;
+    box-shadow: inset 0 0 0 1px #CCC;
+  }
+
+  &[data-facet-value='Black'] {
+    background-color: #000;
+  }
+
+  &[data-facet-value='Blue'] {
+    background-color: #5182A1;
+  }
+
+  &[data-facet-value='Gray'] {
+    background-color: #6F6E6C;
+  }
+
+  &[data-facet-value='Brown'] {
+    background-color: #7B6A63;
+  }
+
+  &[data-facet-value='Red'] {
+    background-color: #BC1C1A;
+  }
+
+  &[data-facet-value='Green'] {
+    background-color: #1E9C5E;
+  }
+
+  &[data-facet-value='Black-brown'] {
+    background-color: #382919;
+  }
+
+  &[data-facet-value='Pink'] {
+    background-color: #C0116D;
+  }
+
+  &[data-facet-value='Dark gray'] {
+    background-color: #444348;
+  }
+}
+
+.Facets-colorCheck {
+  display: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  fill: #fff;
+
+  .Facets-color[data-facet-value='White'] & {
+    fill: #000;
+  }
+
+  .Facets-color.is-checked & {
+    display: block;
+  }
+}
+
+.Facets-thanks {
+  padding-top: 3rem;
+  font-size: 1.2rem;
+  text-align: center;
+  border-top: 1px solid $bg-light;
+}
+
+// CUSTOM RESULTS
+
+.CustomResults {
+  flex-grow: 1;
+}
+
+.CustomResults-topBar {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  border-bottom: 1px solid $bg-light;
+
+  // Customize ais components directly from their parent element to find them easily
+  .ais-Stats__root {
+    display: inline-block;
+    vertical-align: middle;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    font-size: 1.2rem;
+    color: $txt-light;
+  }
+}
+
+.CustomResults-sort {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1.2rem;
+
+  // Customize ais components directly from their parent element to find them easily
+  .ais-SortBy__root {
+    height: 2.5rem;
+    line-height: 2.5rem;
+  }
+}
+
+.CustomResults-sortLabel {
+  margin-right: .5em;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  font-size: 1.2rem;
+  color: $txt-light;
+}
+
+// CUSTOM HITS
+
+.CustomHits {
+  padding: 1rem;
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 140rem;
+
+  @include bp($bp-xsmall) {
+    padding: 1rem .5rem;
+  }
+}
+
+.CustomHits-loadMore {
+  margin-top: 1rem;
+  padding: 1rem;
+  display: block;
+  width: 100%;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: lighten($bg-dark, 20%);
+  border: none;
+  border-radius: 3px;
+
+  @include bp($bp-xsmall) {
+    margin: 0 auto;
+    width: calc(100% - 1rem);
+  }
+
+  &[disabled] {
+    opacity: .5;
+  }
+}
+
+// HIT
+
+.Hit {
+  width: 100%;
+  padding: 2rem;
+  background-color: #fff;
+  border: 1px solid $bg-light;
+  border-radius: 2px;
+
+  @include bp($bp-xsmall) {
+    margin: 0 .5rem 1rem .5rem;
+    width: calc(50% - 1rem);
+  }
+
+  @include bp($bp-medium) {
+    width: calc(33.333333% - 1rem);
+  }
+
+  @include bp($bp-large) {
+    width: calc(25% - 1rem);
+  }
+
+  + .Hit {
+    margin-top: 1rem;
+
+    @include bp($bp-xsmall) {
+      margin-top: 0;
+    }
+  }
+}
+
+.Hit-imgContainer {
+  // Position the image in the middle of its container
+  position: relative;
+  height: 17rem;
+}
+
+.Hit-img {
+  max-height: 17rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.Hit-name {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-top: 1px solid $bg-light;
+  @include ellipsis;
+}
+
+.Hit-type {
+  font-size: 1.4rem;
+  color: $txt-light;
+  @include ellipsis;
+}
+
+.Hit-extraInfo {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Hit-stars {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  top: -.4rem;
+}
+
+.Hit-star {
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  fill: $bg-gold;
+
+  &--empty {
+    fill: $bg-light;
+  }
+}
+
+.Hit-price {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1.4rem;
+  font-weight: bold;
+}

@@ -1,0 +1,15 @@
+// MIXINS
+
+// Breakpoint mixin for media queries, mobile-first approach
+@mixin bp($point) {
+  @media screen and (min-width: $point / 16 + em) {
+    @content;
+  }
+}
+
+// Ellipsis for one-line texts
+@mixin ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

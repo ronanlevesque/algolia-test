@@ -1,0 +1,24 @@
+// BREAKPOINTS
+
+$bp-xsmall: 500;
+$bp-small: 768;
+$bp-medium: 1024;
+$bp-large: 1440;
+$bp-xlarge: 1920;
+
+// COLORS
+// Define colors first before assigning them to texts and backgrounds in order to make this more maintainable
+
+$dark: #222f3f;
+$gold: #ffbe61;
+
+// TEXT COLORS
+
+$txt-dark: $dark;
+$txt-light: lighten($txt-dark, 30%);
+
+// BACKGROUND COLORS
+
+$bg-dark: $dark;
+$bg-light: lighten($bg-dark, 70%);
+$bg-gold: $gold;
