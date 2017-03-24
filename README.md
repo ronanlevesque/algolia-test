@@ -1,6 +1,6 @@
 # Algolia-test
 
-This is a full rewrite of the CSS for the **e-commerce-infinite theme**, as a well as a partial rewrite of its JS template. The theme has been tested on Chrome/Firefox on Mac/Windows. The theme is **fully responsive** and will work from small iPhone resolution to big desktop screens.
+This is a full rewrite of the CSS for the **e-commerce-infinite theme**, as a well as a partial rewrite of its JS template. The theme has been tested on Chrome/Firefox on Mac/Windows. The theme is **fully responsive** and will work from small iPhone resolution up to big desktop screens.
 
 ## How-to
 
@@ -36,5 +36,5 @@ I've also noticed a few accessibility issues on the current theme which I've tri
 
 Here are a few things I would have liked to do/add wih a bit more time:
 
-- Add filters on mobile. They would have been hidden by default and toggled when click on a button.
+- Add filters on mobile. They would have been hidden by default and toggled when clicking on a button.
 - Test the rendering on more devices with tools such as [Browserstack](https://www.browserstack.com/start).
