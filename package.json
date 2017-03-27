@@ -9,6 +9,7 @@
     "react-instantsearch-theme-algolia": "^3.3.0"
   },
   "devDependencies": {
+    "netlify-cli": "^1.2.2",
     "node-sass": "^4.5.1",
     "npm-run-all": "^4.0.2",
     "react-scripts": "0.9.5"
@@ -19,6 +20,7 @@
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && react-scripts build",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && cd build && netlify deploy"
   }
 }

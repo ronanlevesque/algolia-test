@@ -2,9 +2,20 @@
 
 This is a full rewrite of the CSS for the **e-commerce-infinite theme**, as a well as a partial rewrite of its JS template. The theme has been tested on Chrome/Firefox on Mac/Windows. The theme is **fully responsive** and will work from small iPhone resolution up to big desktop screens.
 
+## Live preview
+
+Always available at http://public-relations-officer-antelope-15374.netlify.com/.
+
+Deploy a new preview with:
+
+```sh
+yarn
+yarn deploy
+```
+
 ## How-to
 
-Run `npm install && npm start` to launch the app at http://localhost:3000/.
+Run `yarn && yarn start` to launch the app in dev mode at http://localhost:3000/.
 
 ## Stack and approach
 
